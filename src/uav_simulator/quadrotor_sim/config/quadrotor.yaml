@@ -1,0 +1,29 @@
+# Gravity
+G: 9.81
+
+# Simulation
+t_step: 0.0001
+dt_lowpid: 0.001
+dt_control: 0.01
+
+# Quadrotor
+mass: 1.0
+Jxx: 0.008
+Jyy: 0.009
+Jzz: 0.012
+
+# lowpid parameters
+az_P: 0.9
+az_I: 50
+az_D: 0
+f_lim: 20
+
+w_P: [0.2,0.2,0.2]
+w_I: [0.,0.,0.]
+w_D: [0.00,0.0,0.00]
+w_lim: [6,6,6]
+
+az_lpf: 0.1
+wx_lpf: 0.3
+wy_lpf: 0.3
+wz_lpf: 0.3

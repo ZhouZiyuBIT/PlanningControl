@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<mavlink>
+  <!-- MAVLink standard messages -->
+  <include>common.xml</include>
+  <dialect>0</dialect>
+  <!-- use common.xml enums -->
+  <enums/>
+  <!-- use common.xml messages -->
+  <messages>
+   <message id="18180" name="QUADROTOR_STATE">
+      <description>state of the quadrotor</description>
+      <field type="float" name="Px">Position x</field>
+      <field type="float" name="Py">Position y</field>
+      <field type="float" name="Pz">Position z</field>
+      <field type="float" name="Qw">Quaternion w</field>
+      <field type="float" name="Qx">Quaternion x</field>
+      <field type="float" name="Qy">Quaternion y</field>
+      <field type="float" name="Qz">Quaternion z</field>
+      <field type="float" name="Vx">Velocity x</field>
+      <field type="float" name="Vy">Velocity y</field>
+      <field type="float" name="Vz">Velocity z</field>
+    </message>
+    <message id="18181" name="QUADROTOR_CONTROL_INPUT">
+      <description>control input of the quadrotor</description>
+      <field type="float" name="thrust">Thrust</field>
+      <field type="float" name="Wx">Angular velocity x</field>
+      <field type="float" name="Wy">Angular velocity y</field>
+      <field type="float" name="Wz">Angular velocity z</field>
+    </message>
+    <message id="18182" name="SENSOR_IMU">
+      <description>sensor_imu</description>
+      <field type="float" name="wx">angular velocity x</field>
+      <field type="float" name="wy">angular velocity y</field>
+      <field type="float" name="wz">angular velocity z</field>
+      <field type="float" name="ax">acceleration x</field>
+      <field type="float" name="ay">acceleration y</field>
+      <field type="float" name="az">acceleration z</field>
+    </message>
+  </messages>
+</mavlink>

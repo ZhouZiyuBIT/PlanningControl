@@ -1,0 +1,7 @@
+<launch>
+    <arg name="drone_id" value="0"/>
+    <node pkg="vins" name="vins_estimator" type="vins_node" args="$(find vins)/../config/realsense_d435i/realsense_stereo_imu_config.yaml" output="screen">
+        <!-- <remap from="~odometry" to="/drone_$(arg drone_id)_vins_estimator/odometry" />
+        <remap from="~camera_pose" to="/drone_$(arg drone_id)_vins_estimator/camera_pose" /> -->
+    </node>
+</launch>
