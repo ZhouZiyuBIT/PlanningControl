@@ -16,7 +16,7 @@
         <param name="init_x" value="$(arg init_x_)"/>
         <param name="init_y" value="$(arg init_y_)"/>
         <param name="init_z" value="$(arg init_z_)"/>
-        <remap from="~control_u" to="drone_$(arg drone_id)_planning/control_u"/>
+        <remap from="~control_u" to="drone_$(arg drone_id)_px4/control_u"/>
         <remap from="~odometry" to="drone_$(arg drone_id)_$(arg odometry_topic)"/>
   </node>
  

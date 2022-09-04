@@ -141,8 +141,7 @@ void NATNET_CALLCONV Px4Bridge::DataHandler(sFrameOfMocapData* data, void* pUser
 	{
         if(data->RigidBodies[i].ID == ppx4bridge->_px4_rigidbody_id)
         {
-            ppx4bridge->send_mocap_data(get_time_us(),
-                                        -data->RigidBodies[i].y, -data->RigidBodies[i].x, -data->RigidBodies[i].z,
+            ppx4bridge->send_odom_data(-data->RigidBodies[i].y, -data->RigidBodies[i].x, -data->RigidBodies[i].z,
                                         data->RigidBodies[i].qw,
                                         -data->RigidBodies[i].qy, -data->RigidBodies[i].qx, -data->RigidBodies[i].qz);
         }
@@ -164,9 +163,10 @@ void NATNET_CALLCONV Px4Bridge::DataHandler(sFrameOfMocapData* data, void* pUser
 	}
 }
 
-void Px4Bridge::send_mocap_data(uint64_t usec, float pos_x, float pos_y, float pos_z,
+void Px4Bridge::send_odom_data(float pos_x, float pos_y, float pos_z,
                      float qw, float qx, float qy, float qz)
 {
+    uint64_t usec = get_time_us();
     uint8_t send_buf[512];
     mavlink_message_t msg;
     float pose_covariance[21], vel_covariance[21];
@@ -375,6 +375,7 @@ void Px4Bridge::_core_run()
                                 _rcv_sensor_imu_handler(w, a);
                             }
                         }
+                        break;
 
                         case MAVLINK_MSG_ID_QUADROTOR_STATE:
                             // tim.Toc();
@@ -386,8 +387,8 @@ void Px4Bridge::_core_run()
                             if(_rcv_state_handler)
                             {
                                 float q_s[10] = {q_state.Px, q_state.Py, q_state.Pz,
-                                                 q_state.Qw, q_state.Qx, q_state.Qy, q_state.Qz,
-                                                 q_state.Vx, q_state.Vy, q_state.Vz};
+                                                 q_state.Vx, q_state.Vy, q_state.Vz,
+                                                 q_state.Qw, q_state.Qx, q_state.Qy, q_state.Qz};
                                 _rcv_state_handler(q_s);
                             }
                             // tim.Toc();

@@ -56,6 +56,8 @@ public:
     void registe_rcv_state_callback(const state_callback_f &handler);
     void registe_rcv_sensor_imu_callback(const sensor_imu_callback_f &handler);
     int send_control_u(float thrust_sp, float wx_sp, float wy_sp, float wz_sp);
+    void send_odom_data(float pos_x, float pos_y, float pos_z,
+                         float qw, float qx, float qy, float qz);
 
     int set_thread_rt(int priority);
 
@@ -87,8 +89,7 @@ private:
    NatNetClient *_pClient = NULL;
    sNatNetClientConnectParams _connectParams;
    sServerDescription _serverDescription;
-   void send_mocap_data(uint64_t usec, float pos_x, float pos_y, float pos_z,
-                                       float qw, float qx, float qy, float qz);
+
    static void NATNET_CALLCONV MessageHandler(Verbosity msgType, const char* msg);
    static void NATNET_CALLCONV DataHandler(sFrameOfMocapData* data, void* pUserData);
 

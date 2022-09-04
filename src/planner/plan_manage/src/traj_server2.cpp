@@ -4,13 +4,13 @@
 #include "quadrotor_msgs/PositionCommand.h"
 #include "std_msgs/Empty.h"
 #include "visualization_msgs/Marker.h"
-#include "px4_ctrl/track_trj.h"
+#include "px4_ctrl/track_traj.h"
 #include <ros/ros.h>
 
 ros::Publisher pos_cmd_pub;
-ros::Publisher track_trj_pub;
+ros::Publisher track_traj_pub;
 
-px4_ctrl::track_trj track_trj_msg;
+px4_ctrl::track_traj track_traj_msg;
 quadrotor_msgs::PositionCommand cmd;
 double pos_gain[3] = {0, 0, 0};
 double vel_gain[3] = {0, 0, 0};
@@ -67,7 +67,6 @@ void bsplineCallback(traj_utils::BsplineConstPtr msg)
   traj_duration_ = traj_[0].getTimeSum();
 
   receive_traj_ = true;
-  std::cout << "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh" << std::endl;
 }
 
 void cmdCallback(const ros::TimerEvent &e)
@@ -79,9 +78,12 @@ void cmdCallback(const ros::TimerEvent &e)
   ros::Time time_now = ros::Time::now();
   double t_cur = (time_now - start_time_).toSec();
 
-  Eigen::Vector3d pos;
+  Eigen::Vector3d pos, vel;
+  double yaw=0;
+  static double yaw_last = 0, yaw_drift=0;
   
-  track_trj_msg.pos_pts.clear();
+  track_traj_msg.pos_pts.clear();
+  track_traj_msg.yaw_pts.clear();
 
   for(int i=0; i<10; i++)
   {
@@ -89,11 +91,34 @@ void cmdCallback(const ros::TimerEvent &e)
     if (t_f < traj_duration_ && t_f >= 0.0)
     {
       pos = traj_[0].evaluateDeBoorT(t_f);
+      
+      vel = traj_[1].evaluateDeBoorT(t_f);
+      vel[2] = 0;
+      if(vel.norm() > 0.05)
+      {
+        double yaw_tem = atan2(vel[1], vel[0]);
+        if(yaw_tem+yaw_drift-yaw_last > 3.2)
+        {
+          yaw_drift -= 3.14159265*2;
+        }
+        else if(yaw_tem+yaw_drift-yaw_last < -3.2)
+        {
+          yaw_drift += 3.14159265*2;
+        }
+        yaw = yaw_tem + yaw_drift;
+        yaw_last = yaw;
+      }
+      else
+      {
+        yaw = 1000;
+      }
+
     }
-    else if (t_cur >= traj_duration_)
+    else if (t_f >= traj_duration_)
     {
       /* hover when finish traj_ */
       pos = traj_[0].evaluateDeBoorT(traj_duration_);
+      yaw = 1000;
     }
     else
     {
@@ -103,9 +128,10 @@ void cmdCallback(const ros::TimerEvent &e)
     pt.x = pos(0);
     pt.y = pos(1);
     pt.z = pos(2);
-    track_trj_msg.pos_pts.push_back(pt);
+    track_traj_msg.pos_pts.push_back(pt);
+    track_traj_msg.yaw_pts.push_back(yaw);
   }
-  track_trj_pub.publish(track_trj_msg);
+  track_traj_pub.publish(track_traj_msg);
 }
 
 int main(int argc, char **argv)
@@ -117,7 +143,7 @@ int main(int argc, char **argv)
   ros::Subscriber bspline_sub = nh.subscribe("planning/bspline", 10, bsplineCallback);
 
   pos_cmd_pub = nh.advertise<quadrotor_msgs::PositionCommand>("/position_cmd", 50);
-  track_trj_pub = nh.advertise<px4_ctrl::track_trj>("/track_trj", 1);
+  track_traj_pub = nh.advertise<px4_ctrl::track_traj>("/planning/track_traj", 1);
 
   ros::Timer cmd_timer = nh.createTimer(ros::Duration(0.01), cmdCallback);
   nh.param("traj_server/time_forward", time_forward_, -1.0);

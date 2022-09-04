@@ -1,7 +1,8 @@
 <launch>
-    <arg name="drone_id" value="0"/>
-    <node pkg="vins" name="vins_estimator" type="vins_node" args="$(find vins)/../config/realsense_d435i/realsense_stereo_imu_config.yaml" output="screen">
-        <!-- <remap from="~odometry" to="/drone_$(arg drone_id)_vins_estimator/odometry" />
-        <remap from="~camera_pose" to="/drone_$(arg drone_id)_vins_estimator/camera_pose" /> -->
+    <arg name="drone_id" default="0"/>
+    <node pkg="vins" name="drone_$(arg drone_id)_vins_estimator" type="vins_node" args="$(find vins)/../config/realsense_d435i/realsense_stereo_imu_config.yaml" output="screen">
+        <remap from="/vins/imu" to="/drone_$(arg drone_id)_px4/imu" />
+        <remap from="/vins/cam1" to="/drone_$(arg drone_id)_camera/infra1/image_rect_raw" />
+        <remap from="/vins/cam2" to="/drone_$(arg drone_id)_camera/infra2/image_rect_raw" />
     </node>
 </launch>

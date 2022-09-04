@@ -1,0 +1,9 @@
+<launch>
+    <arg name="drone_id" default="0"/>
+    <node pkg="px4_ctrl" name="px4_bridge" type="px4_bridge_node" output="screen">
+        <remap from="/px4/imu" to="/drone_$(arg drone_id)_px4/imu" />
+        <remap from="/px4/state" to="/drone_$(arg drone_id)_px4/state" />
+        <remap from="/px4/control_u" to="/drone_$(arg drone_id)_px4/control_u"/>
+        <remap from="/slam/odom" to="/drone_$(arg drone_id)_vins_estimator/odometry" />
+    </node>
+</launch>

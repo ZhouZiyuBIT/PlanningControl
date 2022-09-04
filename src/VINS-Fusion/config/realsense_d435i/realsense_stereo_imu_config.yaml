@@ -5,10 +5,10 @@
 imu: 1         
 num_of_cam: 2  
 
-imu_topic: "/px4/imu"
-image0_topic: "/camera/infra1/image_rect_raw"
-image1_topic: "/camera/infra2/image_rect_raw"
-output_path: "/home/ziyuzhou/catkin_ws/output/"
+imu_topic: "/vins/imu"
+image0_topic: "/vins/cam1"
+image1_topic: "/vins/cam2"
+output_path: "/home/zhouziyu/PlanningControl/output/"
 
 cam0_calib: "left.yaml"
 cam1_calib: "right.yaml"

@@ -3,15 +3,12 @@
     
     <arg name="map_size_x" value="40.0"/>
     <arg name="map_size_y" value="40.0"/>
-    <arg name="map_size_z" value="10.0"/>
-    <arg name="target_x" value="5.0"/>
-    <arg name="target_y" value="5.0"/>
-    <arg name="target_z" value="2.0"/>
+    <arg name="map_size_z" value="2.0"/>
 
     <arg name="drone_id" value="0"/>
     <arg name="obj_num" value="10" />
 
-    <arg name="odom_topic" value="/vins_estimator/imu_propagate" />
+    <arg name="odom_topic" value="/vins_estimator/odometry" />
 
     <!-- main algorithm params -->
   <include file="$(find ego_planner)/launch/advanced_param.xml">
@@ -30,7 +27,7 @@
     <!-- don't set cloud_topic if you already set these ones! -->
     <!-- <arg name="camera_pose_topic" value="vins_estimator/camera_pose"/> -->
     <arg name="camera_pose_topic" value="nouse1"/>
-    <arg name="depth_topic" value="/camera/depth/image_rect_raw"/>
+    <arg name="depth_topic" value="camera/depth/image_rect_raw"/>
 
     <!-- topic of point cloud measurement, such as from LIDAR  -->
     <!-- don't set camera pose and depth, if you already set this one! -->
@@ -53,18 +50,18 @@
 
     <!-- 1: use 2D Nav Goal to select goal  -->
     <!-- 2: use global waypoints below  -->
-    <arg name="flight_type" value="1" />
+    <arg name="flight_type" value="2" />
     
     <!-- global waypoints -->
     <!-- It generates a piecewise min-snap traj passing all waypoints -->
     <arg name="point_num" value="1" />
 
-    <arg name="point0_x" value="$(arg target_x)" />
-    <arg name="point0_y" value="$(arg target_y)" />
-    <arg name="point0_z" value="$(arg target_z)" />
+    <arg name="point0_x" value="0" />
+    <arg name="point0_y" value="0" />
+    <arg name="point0_z" value="1" />
 
     <arg name="point1_x" value="0.0" />
-    <arg name="point1_y" value="15.0" />
+    <arg name="point1_y" value="15.0"/>
     <arg name="point1_z" value="1.0" />
 
     <arg name="point2_x" value="15.0" />
@@ -80,5 +77,18 @@
     <arg name="point4_z" value="1.0" />
     
   </include>
+
+  <!-- trajectory server -->
+  <node pkg="ego_planner" name="drone_$(arg drone_id)_traj_server2" type="traj_server2" output="screen">
+      <remap from="/planning/track_traj" to="drone_$(arg drone_id)_planning/track_traj"/>
+      <remap from="~planning/bspline" to="drone_$(arg drone_id)_planning/bspline"/>
+      <param name="traj_server/time_forward" value="1.0" type="double"/>
+  </node>
+
+  <node pkg="px4_ctrl" name="px4_mpc" type="px4_mpc_node" args="$(find px4_ctrl)/src/mpc_T1_dt01.so" output="screen">
+    <remap from="/planning/track_traj" to="drone_$(arg drone_id)_planning/track_traj"/>
+    <remap from="/px4/control_u" to="drone_$(arg drone_id)_px4/control_u"/>
+    <remap from="/px4/state" to="drone_$(arg drone_id)_px4/state"/>
+  </node>
 
 </launch>

@@ -67,7 +67,7 @@ find_package(casadi REQUIRED)
 # )
 add_message_files(
   FILES
-  track_trj.msg
+  track_traj.msg
 )
 
 ## Generate services in the 'srv' folder
@@ -126,7 +126,7 @@ generate_messages(
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES px4_ctrl
-#  CATKIN_DEPENDS sensor_msgs
+#  CATKIN_DEPENDS sensor_msgs message_runtime geometry_msgs quadrotor_sim
 #  DEPENDS system_lib
 )
 
@@ -139,8 +139,8 @@ catkin_package(
 include_directories(
 # include
   ${catkin_INCLUDE_DIRS}
-  "include"
-  "third_party"
+  include
+  third_party
 )
 
 ## Declare a C++ library
@@ -157,7 +157,8 @@ include_directories(
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
 # add_executable(${PROJECT_NAME}_node src/px4_ctrl_node.cpp)
-add_executable(Px4Bridge_node src/Px4Bridge_node.cpp src/Px4Bridge.cpp src/mpc.cpp)
+add_executable(px4_bridge_node src/px4_bridge_node.cpp src/Px4Bridge.cpp)
+add_executable(px4_mpc_node src/px4_mpc_node.cpp src/mpc.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -167,13 +168,15 @@ add_executable(Px4Bridge_node src/Px4Bridge_node.cpp src/Px4Bridge.cpp src/mpc.c
 
 ## Add cmake target dependencies of the executable
 ## same as for the library above
-# add_dependencies(${PROJECT_NAME}_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+add_dependencies(px4_bridge_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+add_dependencies(px4_mpc_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
 # target_link_libraries(${PROJECT_NAME}_node
 #   ${catkin_LIBRARIES}
 # )
-target_link_libraries(Px4Bridge_node pthread NatNetSDK casadi ${catkin_LIBRARIES})
+target_link_libraries(px4_bridge_node pthread NatNetSDK ${catkin_LIBRARIES})
+target_link_libraries(px4_mpc_node casadi ${catkin_LIBRARIES})
 
 #############
 ## Install ##

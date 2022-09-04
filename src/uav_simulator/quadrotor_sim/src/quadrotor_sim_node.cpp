@@ -49,10 +49,10 @@ int main(int argc, char *argv[])
     {
         ros::spinOnce();
 
-        float f = -20*ctrl_u.f;
+        float az = ctrl_u.az;
         float w[3] = {ctrl_u.wx, ctrl_u.wy, ctrl_u.wz};
         if(rcv_control)
-            quadrotor.control(f, w);
+            quadrotor.control(az, w);
         nav_msgs::Odometry odom;
         odom.header.stamp = ros::Time::now();
         odom.header.frame_id = "world";
