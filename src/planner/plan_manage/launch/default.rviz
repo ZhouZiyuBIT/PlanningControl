@@ -7,11 +7,8 @@ Panels:
         - /Global Options1
         - /Status1
         - /simulation_map1/Autocompute Value Bounds1
-        - /drone01/Planning1
-        - /drone01/Planning1/drone_path1
+        - /drone01
         - /drone01/Planning1/drone_path1/Offset1
-        - /drone01/Mapping1
-        - /drone01/Mapping1/map inflate1
         - /drone11/Planning1
         - /drone11/Planning1/drone_path1
         - /drone11/Mapping1
@@ -108,7 +105,7 @@ Panels:
         - /drone201/Simulation1
         - /drone201/Simulation1/robot1
       Splitter Ratio: 0.43611112236976624
-    Tree Height: 441
+    Tree Height: 911
   - Class: rviz/Selection
     Name: Selection
   - Class: rviz/Tool Properties
@@ -124,10 +121,9 @@ Panels:
     Name: Views
     Splitter Ratio: 0.5
   - Class: rviz/Time
-    Experimental: false
     Name: Time
     SyncMode: 0
-    SyncSource: simulation_map
+    SyncSource: map inflate
 Preferences:
   PromptSaveOnExit: true
 Toolbars:
@@ -142,6 +138,7 @@ Visualization Manager:
       Name: Axes
       Radius: 0.10000000149011612
       Reference Frame: <Fixed Frame>
+      Show Trail: false
       Value: false
     - Alpha: 0.5
       Cell Size: 1
@@ -173,12 +170,10 @@ Visualization Manager:
       Color: 85; 170; 255
       Color Transformer: FlatColor
       Decay Time: 0
-      Enabled: true
+      Enabled: false
       Invert Rainbow: false
       Max Color: 255; 255; 255
-      Max Intensity: 4096
       Min Color: 0; 0; 0
-      Min Intensity: 0
       Name: simulation_map
       Position Transformer: XYZ
       Queue Size: 10
@@ -190,7 +185,7 @@ Visualization Manager:
       Unreliable: false
       Use Fixed Frame: true
       Use rainbow: true
-      Value: true
+      Value: false
     - Class: rviz/Group
       Displays:
         - Class: rviz/Group
@@ -266,21 +261,19 @@ Visualization Manager:
             - Alpha: 1
               Autocompute Intensity Bounds: true
               Autocompute Value Bounds:
-                Max Value: 2.8399999141693115
+                Max Value: 1.7400000095367432
                 Min Value: 0.03999999910593033
                 Value: true
               Axis: Z
               Channel Name: intensity
               Class: rviz/PointCloud2
               Color: 29; 108; 212
-              Color Transformer: FlatColor
+              Color Transformer: AxisColor
               Decay Time: 0
               Enabled: true
               Invert Rainbow: false
               Max Color: 255; 255; 255
-              Max Intensity: 4096
               Min Color: 0; 0; 0
-              Min Intensity: 0
               Name: map inflate
               Position Transformer: XYZ
               Queue Size: 10
@@ -346,7 +339,7 @@ Visualization Manager:
               Marker Topic: /drone_1_ego_planner_node/optimal_list
               Name: optimal_traj
               Namespaces:
-                "": true
+                {}
               Queue Size: 100
               Value: true
             - Class: rviz/Marker
@@ -408,9 +401,7 @@ Visualization Manager:
               Enabled: true
               Invert Rainbow: false
               Max Color: 255; 255; 255
-              Max Intensity: 4096
               Min Color: 0; 0; 0
-              Min Intensity: 0
               Name: map inflate
               Position Transformer: XYZ
               Queue Size: 10
@@ -432,7 +423,7 @@ Visualization Manager:
               Marker Topic: /drone_1_odom_visualization/robot
               Name: robot
               Namespaces:
-                mesh: true
+                {}
               Queue Size: 100
               Value: true
             - Class: rviz/Image
@@ -449,7 +440,7 @@ Visualization Manager:
               Value: false
           Enabled: true
           Name: Simulation
-      Enabled: true
+      Enabled: false
       Name: drone1
     - Class: rviz/Group
       Displays:
@@ -476,7 +467,7 @@ Visualization Manager:
               Marker Topic: /drone_2_ego_planner_node/optimal_list
               Name: optimal_traj
               Namespaces:
-                "": true
+                {}
               Queue Size: 100
               Value: true
             - Class: rviz/Marker
@@ -538,9 +529,7 @@ Visualization Manager:
               Enabled: true
               Invert Rainbow: false
               Max Color: 255; 255; 255
-              Max Intensity: 4096
               Min Color: 0; 0; 0
-              Min Intensity: 0
               Name: map inflate
               Position Transformer: XYZ
               Queue Size: 10
@@ -562,7 +551,7 @@ Visualization Manager:
               Marker Topic: /drone_2_odom_visualization/robot
               Name: robot
               Namespaces:
-                mesh: true
+                {}
               Queue Size: 100
               Value: true
             - Class: rviz/Image
@@ -579,7 +568,7 @@ Visualization Manager:
               Value: false
           Enabled: true
           Name: Simulation
-      Enabled: true
+      Enabled: false
       Name: drone2
     - Class: rviz/Group
       Displays:
@@ -606,7 +595,7 @@ Visualization Manager:
               Marker Topic: /drone_3_ego_planner_node/optimal_list
               Name: optimal_traj
               Namespaces:
-                "": true
+                {}
               Queue Size: 100
               Value: true
             - Class: rviz/Marker
@@ -668,9 +657,7 @@ Visualization Manager:
               Enabled: true
               Invert Rainbow: false
               Max Color: 255; 255; 255
-              Max Intensity: 4096
               Min Color: 0; 0; 0
-              Min Intensity: 0
               Name: map inflate
               Position Transformer: XYZ
               Queue Size: 10
@@ -692,7 +679,7 @@ Visualization Manager:
               Marker Topic: /drone_3_odom_visualization/robot
               Name: robot
               Namespaces:
-                mesh: true
+                {}
               Queue Size: 100
               Value: true
             - Class: rviz/Image
@@ -709,7 +696,7 @@ Visualization Manager:
               Value: false
           Enabled: true
           Name: Simulation
-      Enabled: true
+      Enabled: false
       Name: drone3
     - Class: rviz/Group
       Displays:
@@ -736,7 +723,7 @@ Visualization Manager:
               Marker Topic: /drone_4_ego_planner_node/optimal_list
               Name: optimal_traj
               Namespaces:
-                "": true
+                {}
               Queue Size: 100
               Value: true
             - Class: rviz/Marker
@@ -798,9 +785,7 @@ Visualization Manager:
               Enabled: true
               Invert Rainbow: false
               Max Color: 255; 255; 255
-              Max Intensity: 4096
               Min Color: 0; 0; 0
-              Min Intensity: 0
               Name: map inflate
               Position Transformer: XYZ
               Queue Size: 10
@@ -822,7 +807,7 @@ Visualization Manager:
               Marker Topic: /drone_4_odom_visualization/robot
               Name: robot
               Namespaces:
-                mesh: true
+                {}
               Queue Size: 100
               Value: true
             - Class: rviz/Image
@@ -839,7 +824,7 @@ Visualization Manager:
               Value: false
           Enabled: true
           Name: Simulation
-      Enabled: true
+      Enabled: false
       Name: drone4
     - Class: rviz/Group
       Displays:
@@ -866,7 +851,7 @@ Visualization Manager:
               Marker Topic: /drone_5_ego_planner_node/optimal_list
               Name: optimal_traj
               Namespaces:
-                "": true
+                {}
               Queue Size: 100
               Value: true
             - Class: rviz/Marker
@@ -928,9 +913,7 @@ Visualization Manager:
               Enabled: true
               Invert Rainbow: false
               Max Color: 255; 255; 255
-              Max Intensity: 4096
               Min Color: 0; 0; 0
-              Min Intensity: 0
               Name: map inflate
               Position Transformer: XYZ
               Queue Size: 10
@@ -952,7 +935,7 @@ Visualization Manager:
               Marker Topic: /drone_5_odom_visualization/robot
               Name: robot
               Namespaces:
-                mesh: true
+                {}
               Queue Size: 100
               Value: true
             - Class: rviz/Image
@@ -969,7 +952,7 @@ Visualization Manager:
               Value: false
           Enabled: true
           Name: Simulation
-      Enabled: true
+      Enabled: false
       Name: drone5
     - Class: rviz/Group
       Displays:
@@ -996,7 +979,7 @@ Visualization Manager:
               Marker Topic: /drone_6_ego_planner_node/optimal_list
               Name: optimal_traj
               Namespaces:
-                "": true
+                {}
               Queue Size: 100
               Value: true
             - Class: rviz/Marker
@@ -1058,9 +1041,7 @@ Visualization Manager:
               Enabled: true
               Invert Rainbow: false
               Max Color: 255; 255; 255
-              Max Intensity: 4096
               Min Color: 0; 0; 0
-              Min Intensity: 0
               Name: map inflate
               Position Transformer: XYZ
               Queue Size: 10
@@ -1082,7 +1063,7 @@ Visualization Manager:
               Marker Topic: /drone_6_odom_visualization/robot
               Name: robot
               Namespaces:
-                mesh: true
+                {}
               Queue Size: 100
               Value: true
             - Class: rviz/Image
@@ -1099,7 +1080,7 @@ Visualization Manager:
               Value: false
           Enabled: true
           Name: Simulation
-      Enabled: true
+      Enabled: false
       Name: drone6
     - Class: rviz/Group
       Displays:
@@ -1126,7 +1107,7 @@ Visualization Manager:
               Marker Topic: /drone_7_ego_planner_node/optimal_list
               Name: optimal_traj
               Namespaces:
-                "": true
+                {}
               Queue Size: 100
               Value: true
             - Class: rviz/Marker
@@ -1188,9 +1169,7 @@ Visualization Manager:
               Enabled: true
               Invert Rainbow: false
               Max Color: 255; 255; 255
-              Max Intensity: 4096
               Min Color: 0; 0; 0
-              Min Intensity: 0
               Name: map inflate
               Position Transformer: XYZ
               Queue Size: 10
@@ -1212,7 +1191,7 @@ Visualization Manager:
               Marker Topic: /drone_7_odom_visualization/robot
               Name: robot
               Namespaces:
-                mesh: true
+                {}
               Queue Size: 100
               Value: true
             - Class: rviz/Image
@@ -1229,7 +1208,7 @@ Visualization Manager:
               Value: false
           Enabled: true
           Name: Simulation
-      Enabled: true
+      Enabled: false
       Name: drone7
     - Class: rviz/Group
       Displays:
@@ -1256,7 +1235,7 @@ Visualization Manager:
               Marker Topic: /drone_8_ego_planner_node/optimal_list
               Name: optimal_traj
               Namespaces:
-                "": true
+                {}
               Queue Size: 100
               Value: true
             - Class: rviz/Marker
@@ -1318,9 +1297,7 @@ Visualization Manager:
               Enabled: true
               Invert Rainbow: false
               Max Color: 255; 255; 255
-              Max Intensity: 4096
               Min Color: 0; 0; 0
-              Min Intensity: 0
               Name: map inflate
               Position Transformer: XYZ
               Queue Size: 10
@@ -1342,7 +1319,7 @@ Visualization Manager:
               Marker Topic: /drone_8_odom_visualization/robot
               Name: robot
               Namespaces:
-                mesh: true
+                {}
               Queue Size: 100
               Value: true
             - Class: rviz/Image
@@ -1359,7 +1336,7 @@ Visualization Manager:
               Value: false
           Enabled: true
           Name: Simulation
-      Enabled: true
+      Enabled: false
       Name: drone8
     - Class: rviz/Group
       Displays:
@@ -1386,7 +1363,7 @@ Visualization Manager:
               Marker Topic: /drone_9_ego_planner_node/optimal_list
               Name: optimal_traj
               Namespaces:
-                "": true
+                {}
               Queue Size: 100
               Value: true
             - Class: rviz/Marker
@@ -1448,9 +1425,7 @@ Visualization Manager:
               Enabled: true
               Invert Rainbow: false
               Max Color: 255; 255; 255
-              Max Intensity: 4096
               Min Color: 0; 0; 0
-              Min Intensity: 0
               Name: map inflate
               Position Transformer: XYZ
               Queue Size: 10
@@ -1472,7 +1447,7 @@ Visualization Manager:
               Marker Topic: /drone_9_odom_visualization/robot
               Name: robot
               Namespaces:
-                mesh: true
+                {}
               Queue Size: 100
               Value: true
             - Class: rviz/Image
@@ -1489,7 +1464,7 @@ Visualization Manager:
               Value: false
           Enabled: true
           Name: Simulation
-      Enabled: true
+      Enabled: false
       Name: drone9
     - Class: rviz/Group
       Displays:
@@ -1578,9 +1553,7 @@ Visualization Manager:
               Enabled: true
               Invert Rainbow: false
               Max Color: 255; 255; 255
-              Max Intensity: 4096
               Min Color: 0; 0; 0
-              Min Intensity: 0
               Name: map inflate
               Position Transformer: XYZ
               Queue Size: 10
@@ -1619,7 +1592,7 @@ Visualization Manager:
               Value: false
           Enabled: true
           Name: Simulation
-      Enabled: true
+      Enabled: false
       Name: drone10
     - Class: rviz/Group
       Displays:
@@ -1708,9 +1681,7 @@ Visualization Manager:
               Enabled: true
               Invert Rainbow: false
               Max Color: 255; 255; 255
-              Max Intensity: 4096
               Min Color: 0; 0; 0
-              Min Intensity: 0
               Name: map inflate
               Position Transformer: XYZ
               Queue Size: 10
@@ -1749,7 +1720,7 @@ Visualization Manager:
               Value: false
           Enabled: true
           Name: Simulation
-      Enabled: true
+      Enabled: false
       Name: drone11
     - Class: rviz/Group
       Displays:
@@ -1838,9 +1809,7 @@ Visualization Manager:
               Enabled: true
               Invert Rainbow: false
               Max Color: 255; 255; 255
-              Max Intensity: 4096
               Min Color: 0; 0; 0
-              Min Intensity: 0
               Name: map inflate
               Position Transformer: XYZ
               Queue Size: 10
@@ -1879,7 +1848,7 @@ Visualization Manager:
               Value: false
           Enabled: true
           Name: Simulation
-      Enabled: true
+      Enabled: false
       Name: drone12
     - Class: rviz/Group
       Displays:
@@ -1968,9 +1937,7 @@ Visualization Manager:
               Enabled: true
               Invert Rainbow: false
               Max Color: 255; 255; 255
-              Max Intensity: 4096
               Min Color: 0; 0; 0
-              Min Intensity: 0
               Name: map inflate
               Position Transformer: XYZ
               Queue Size: 10
@@ -2009,7 +1976,7 @@ Visualization Manager:
               Value: false
           Enabled: true
           Name: Simulation
-      Enabled: true
+      Enabled: false
       Name: drone13
     - Class: rviz/Group
       Displays:
@@ -2098,9 +2065,7 @@ Visualization Manager:
               Enabled: true
               Invert Rainbow: false
               Max Color: 255; 255; 255
-              Max Intensity: 4096
               Min Color: 0; 0; 0
-              Min Intensity: 0
               Name: map inflate
               Position Transformer: XYZ
               Queue Size: 10
@@ -2139,7 +2104,7 @@ Visualization Manager:
               Value: false
           Enabled: true
           Name: Simulation
-      Enabled: true
+      Enabled: false
       Name: drone14
     - Class: rviz/Group
       Displays:
@@ -2228,9 +2193,7 @@ Visualization Manager:
               Enabled: true
               Invert Rainbow: false
               Max Color: 255; 255; 255
-              Max Intensity: 4096
               Min Color: 0; 0; 0
-              Min Intensity: 0
               Name: map inflate
               Position Transformer: XYZ
               Queue Size: 10
@@ -2269,7 +2232,7 @@ Visualization Manager:
               Value: false
           Enabled: true
           Name: Simulation
-      Enabled: true
+      Enabled: false
       Name: drone15
     - Class: rviz/Group
       Displays:
@@ -2358,9 +2321,7 @@ Visualization Manager:
               Enabled: true
               Invert Rainbow: false
               Max Color: 255; 255; 255
-              Max Intensity: 4096
               Min Color: 0; 0; 0
-              Min Intensity: 0
               Name: map inflate
               Position Transformer: XYZ
               Queue Size: 10
@@ -2399,7 +2360,7 @@ Visualization Manager:
               Value: false
           Enabled: true
           Name: Simulation
-      Enabled: true
+      Enabled: false
       Name: drone16
     - Class: rviz/Group
       Displays:
@@ -2488,9 +2449,7 @@ Visualization Manager:
               Enabled: true
               Invert Rainbow: false
               Max Color: 255; 255; 255
-              Max Intensity: 4096
               Min Color: 0; 0; 0
-              Min Intensity: 0
               Name: map inflate
               Position Transformer: XYZ
               Queue Size: 10
@@ -2529,7 +2488,7 @@ Visualization Manager:
               Value: false
           Enabled: true
           Name: Simulation
-      Enabled: true
+      Enabled: false
       Name: drone17
     - Class: rviz/Group
       Displays:
@@ -2618,9 +2577,7 @@ Visualization Manager:
               Enabled: true
               Invert Rainbow: false
               Max Color: 255; 255; 255
-              Max Intensity: 4096
               Min Color: 0; 0; 0
-              Min Intensity: 0
               Name: map inflate
               Position Transformer: XYZ
               Queue Size: 10
@@ -2659,7 +2616,7 @@ Visualization Manager:
               Value: false
           Enabled: true
           Name: Simulation
-      Enabled: true
+      Enabled: false
       Name: drone18
     - Class: rviz/Group
       Displays:
@@ -2748,9 +2705,7 @@ Visualization Manager:
               Enabled: true
               Invert Rainbow: false
               Max Color: 255; 255; 255
-              Max Intensity: 4096
               Min Color: 0; 0; 0
-              Min Intensity: 0
               Name: map inflate
               Position Transformer: XYZ
               Queue Size: 10
@@ -2789,7 +2744,7 @@ Visualization Manager:
               Value: false
           Enabled: true
           Name: Simulation
-      Enabled: true
+      Enabled: false
       Name: drone19
     - Class: rviz/Group
       Displays:
@@ -2878,9 +2833,7 @@ Visualization Manager:
               Enabled: true
               Invert Rainbow: false
               Max Color: 255; 255; 255
-              Max Intensity: 4096
               Min Color: 0; 0; 0
-              Min Intensity: 0
               Name: map inflate
               Position Transformer: XYZ
               Queue Size: 10
@@ -2919,7 +2872,7 @@ Visualization Manager:
               Value: false
           Enabled: true
           Name: Simulation
-      Enabled: true
+      Enabled: false
       Name: drone20
     - Class: rviz/Image
       Enabled: false
@@ -2960,7 +2913,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/ThirdPersonFollower
-      Distance: 52.77322769165039
+      Distance: 12.49601936340332
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -2968,17 +2921,17 @@ Visualization Manager:
         Value: false
       Field of View: 0.7853981852531433
       Focal Point:
-        X: -10.308119773864746
-        Y: -0.9097803831100464
-        Z: -9.5367431640625e-07
+        X: -14.909164428710938
+        Y: 0.034897804260253906
+        Z: -4.4415596676117275e-06
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 1.5697963237762451
+      Pitch: -0.0252026729285717
       Target Frame: <Fixed Frame>
-      Yaw: 3.1415886878967285
+      Yaw: 3.211590051651001
     Saved:
       - Class: rviz/FPS
         Enable Stereo Rendering:
@@ -3033,13 +2986,13 @@ Visualization Manager:
         Yaw: 0
 Window Geometry:
   Displays:
-    collapsed: true
+    collapsed: false
   Height: 1241
-  Hide Left Dock: true
+  Hide Left Dock: false
   Hide Right Dock: false
   Image:
     collapsed: true
-  QMainWindow State: 000000ff00000000fd00000004000000000000019200000526fc0200000024fb0000001200530065006c0065006300740069006f006e00000001e10000009b0000005c00fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007302000001ed000001df00000185000000a3fb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb000000100044006900730070006c006100790073000000002800000319000000c900fffffffb0000000a005600690065007700730000000347000000ad000000a400fffffffb0000002000730065006c0065006300740069006f006e00200062007500660066006500720200000138000000aa0000023a00000294fb00000014005700690064006500530074006500720065006f02000000e6000000d2000003ee0000030bfb0000000c004b0069006e0065006300740200000186000001060000030c00000261fb0000000c00430061006d00650072006100000001d1000000b50000000000000000fb0000000a0049006d00610067006502000001a2000001e1000000f8000000b5fb0000000a00640065007000740068000000031d000002310000001600fffffffb0000000a0049006d0061006700650100000415000000f80000000000000000fb0000000a0049006d00610067006501000003f4000001190000000000000000fb0000000a0064006500700074006800000004a2000000ac0000001600fffffffb0000000a0064006500700074006800000003b4000001b60000001600fffffffb0000000a0064006500700074006800000004b9000000950000001600fffffffb0000000a006400650070007400680000000481000000cd0000001600fffffffb0000000a006400650070007400680000000429000001250000001600fffffffb0000000a0064006500700074006800000003b7000000af0000001600fffffffb0000000a0064006500700074006800000003d5000000b50000001600fffffffb0000000a006400650070007400680000000444000001260000001600fffffffb0000000a00640065007000740068000000041f0000014b0000001600fffffffb0000000a0064006500700074006800000001b8000000160000001600fffffffb0000000a0064006500700074006800000001c1000000160000001600fffffffb0000000a0064006500700074006800000004b1000000550000001600fffffffb0000000a006400650070007400680000000505000000650000001600fffffffb0000000a006400650070007400680000000502000000680000001600fffffffb0000000a0064006500700074006800000004f9000000710000001600fffffffb0000000a0064006500700074006800000004e9000000810000001600fffffffb0000000a0064006500700074006800000004de0000008c0000001600fffffffb0000000a0064006500700074006800000004cc0000009e0000001600fffffffb0000000a0064006500700074006800000004bb000000af0000001600fffffffb0000000a0064006500700074006800000004aa000000c00000001600fffffffb0000000a006400650070007400680000000498000000d20000000000000000fb0000000a0049006d00610067006500000003fa000001540000000000000000000000010000010f00000385fc0200000002fb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000001200530065006c0065006300740069006f006e010000025a000000b200000000000000000000000200000490000000a9fc0100000001fb0000000a00560069006500770073030000004e00000080000002e10000019700000003000006100000003bfc0100000002fb0000000800540069006d0065000000000000000610000002eb00fffffffb0000000800540069006d006501000000000000045000000000000000000000044e0000047f00000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  QMainWindow State: 000000ff00000000fd0000000400000000000001920000047ffc0200000024fb0000001200530065006c0065006300740069006f006e00000001e10000009b0000005c00fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007302000001ed000001df00000185000000a3fb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb000000100044006900730070006c006100790073010000003d000003cc000000c900fffffffb0000000a00560069006500770073010000040f000000ad000000a400fffffffb0000002000730065006c0065006300740069006f006e00200062007500660066006500720200000138000000aa0000023a00000294fb00000014005700690064006500530074006500720065006f02000000e6000000d2000003ee0000030bfb0000000c004b0069006e0065006300740200000186000001060000030c00000261fb0000000c00430061006d00650072006100000001d1000000b50000000000000000fb0000000a0049006d00610067006502000001a2000001e100000280000001e0fb0000000a00640065007000740068000000031d000002310000001600fffffffb0000000a0049006d0061006700650100000415000000f80000000000000000fb0000000a0049006d00610067006501000003f4000001190000000000000000fb0000000a0064006500700074006800000004a2000000ac0000001600fffffffb0000000a0064006500700074006800000003b4000001b60000001600fffffffb0000000a0064006500700074006800000004b9000000950000001600fffffffb0000000a006400650070007400680000000481000000cd0000001600fffffffb0000000a006400650070007400680000000429000001250000001600fffffffb0000000a0064006500700074006800000003b7000000af0000001600fffffffb0000000a0064006500700074006800000003d5000000b50000001600fffffffb0000000a006400650070007400680000000444000001260000001600fffffffb0000000a00640065007000740068000000041f0000014b0000001600fffffffb0000000a0064006500700074006800000001b8000000160000001600fffffffb0000000a0064006500700074006800000001c1000000160000001600fffffffb0000000a0064006500700074006800000004b1000000550000001600fffffffb0000000a006400650070007400680000000505000000650000001600fffffffb0000000a006400650070007400680000000502000000680000001600fffffffb0000000a0064006500700074006800000004f9000000710000001600fffffffb0000000a0064006500700074006800000004e9000000810000001600fffffffb0000000a0064006500700074006800000004de0000008c0000001600fffffffb0000000a0064006500700074006800000004cc0000009e0000001600fffffffb0000000a0064006500700074006800000004bb000000af0000001600fffffffb0000000a0064006500700074006800000004aa000000c00000001600fffffffb0000000a006400650070007400680000000498000000d20000000000000000fb0000000a0049006d00610067006500000003fa000001540000000000000000000000010000010f00000385fc0200000002fb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000001200530065006c0065006300740069006f006e010000025a000000b200000000000000000000000200000490000000a9fc0100000001fb0000000a00560069006500770073030000004e00000080000002e10000019700000003000006100000003bfc0100000002fb0000000800540069006d00650000000000000006100000041800fffffffb0000000800540069006d00650100000000000004500000000000000000000002b60000047f00000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
   Selection:
     collapsed: false
   Time:
@@ -3047,9 +3000,9 @@ Window Geometry:
   Tool Properties:
     collapsed: false
   Views:
-    collapsed: true
+    collapsed: false
   Width: 1102
-  X: 3339
-  Y: 75
+  X: 1061
+  Y: 86
   depth:
     collapsed: false

@@ -1,12 +1,7 @@
 source devel/setup.bash
-
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/zhouziyu/PlanningControl/src/px4_ctrl/third_party/libcasadi-linux-gcc5-v3.5.5/lib
 drone_id=0
 
-roslaunch realsense2_camera rs_camera_vins.launch camera:=drone_"$drone_id"_camera & sleep 1
-roslaunch px4_ctrl test.launch drone_id:=$drone_id &
-sleep 5
+roslaunch ego_planner test.launch
 
-#roslaunch vins vins_rviz.launch & sleep 1
-#rosrun vins vins_node src/VINS-Fusion/config/realsense_d435i/realsense_stereo_imu_config.yaml &
-roslaunch vins vins_run.launch drone_id:=$drone_id & sleep 5
 wait

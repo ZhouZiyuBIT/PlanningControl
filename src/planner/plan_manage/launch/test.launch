@@ -1,5 +1,4 @@
 <launch>
-    <include file="$(find ego_planner)/launch/rviz.launch"/>
     
     <arg name="map_size_x" value="40.0"/>
     <arg name="map_size_y" value="40.0"/>
@@ -8,7 +7,7 @@
     <arg name="drone_id" value="0"/>
     <arg name="obj_num" value="10" />
 
-    <arg name="odom_topic" value="/vins_estimator/odometry" />
+    <arg name="odom_topic" value="vins_estimator/odometry" />
 
     <!-- main algorithm params -->
   <include file="$(find ego_planner)/launch/advanced_param.xml">
@@ -56,12 +55,12 @@
     <!-- It generates a piecewise min-snap traj passing all waypoints -->
     <arg name="point_num" value="1" />
 
-    <arg name="point0_x" value="0" />
-    <arg name="point0_y" value="0" />
-    <arg name="point0_z" value="1" />
+    <arg name="point0_x" value="0.0" />
+    <arg name="point0_y" value="0.0" />
+    <arg name="point0_z" value="1.0" />
 
-    <arg name="point1_x" value="0.0" />
-    <arg name="point1_y" value="15.0"/>
+    <arg name="point1_x" value="1.0" />
+    <arg name="point1_y" value="0.0"/>
     <arg name="point1_z" value="1.0" />
 
     <arg name="point2_x" value="15.0" />
@@ -90,5 +89,19 @@
     <remap from="/px4/control_u" to="drone_$(arg drone_id)_px4/control_u"/>
     <remap from="/px4/state" to="drone_$(arg drone_id)_px4/state"/>
   </node>
+
+  <!-- visualization -->
+  <node pkg="odom_visualization" name="drone_$(arg drone_id)_odom_visualization" type="odom_visualization" output="screen">
+        <remap from="~odom" to="drone_$(arg drone_id)_$(arg odom_topic)"/>
+        <param name="color/a" value="1.0"/>    
+        <param name="color/r" value="0.0"/>        
+        <param name="color/g" value="0.0"/>        
+        <param name="color/b" value="0.0"/>       
+        <param name="covariance_scale" value="100.0"/>       
+        <param name="robot_scale" value="1.0"/>
+        <param name="tf45" value="false"/>
+        <param name="drone_id" value="drone_id"/>
+  </node>
+  <include file="$(find ego_planner)/launch/rviz.launch"/>
 
 </launch>

@@ -56,6 +56,7 @@
     <remap from="~grid_map/cloud" to="/drone_$(arg drone_id)_$(arg cloud_topic)"/>
     <remap from="~grid_map/pose"   to = "/drone_$(arg drone_id)_$(arg camera_pose_topic)"/> 
     <remap from="~grid_map/depth" to = "/drone_$(arg drone_id)_$(arg depth_topic)"/>
+    <remap from="/vins_estimator/extrinsic" to="/drone_$(arg drone_id)_vins_estimator/extrinsic" />
 
     <!-- planning fsm -->
     <param name="fsm/flight_type" value="$(arg flight_type)" type="int"/>
@@ -88,9 +89,9 @@
     <param name="grid_map/map_size_x"   value="$(arg map_size_x_)" /> 
     <param name="grid_map/map_size_y"   value="$(arg map_size_y_)" /> 
     <param name="grid_map/map_size_z"   value="$(arg map_size_z_)" /> 
-    <param name="grid_map/local_update_range_x"  value="5.5" /> 
-    <param name="grid_map/local_update_range_y"  value="5.5" /> 
-    <param name="grid_map/local_update_range_z"  value="4.5" /> 
+    <param name="grid_map/local_update_range_x"  value="5.0" /> 
+    <param name="grid_map/local_update_range_y"  value="5.0" /> 
+    <param name="grid_map/local_update_range_z"  value="4.0" /> 
     <param name="grid_map/obstacles_inflation"     value="0.199" /> 
     <param name="grid_map/local_map_margin" value="10"/>
     <param name="grid_map/ground_height"        value="-0.01"/>
@@ -116,8 +117,8 @@
     <param name="grid_map/min_ray_length" value="0.3"/>
     <param name="grid_map/max_ray_length" value="5"/>
 
-    <param name="grid_map/virtual_ceil_height"   value="2.9"/>
-    <param name="grid_map/visualization_truncate_height"   value="2.8"/>
+    <param name="grid_map/virtual_ceil_height"   value="2.0"/>
+    <param name="grid_map/visualization_truncate_height"   value="1.8"/>
     <param name="grid_map/show_occ_time"  value="false"/>
     <param name="grid_map/pose_type"     value="2"/>  
     <param name="grid_map/frame_id"      value="world"/>
