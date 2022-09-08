@@ -5,4 +5,12 @@
         <remap from="/vins/cam1" to="/drone_$(arg drone_id)_camera/infra1/image_rect_raw" />
         <remap from="/vins/cam2" to="/drone_$(arg drone_id)_camera/infra2/image_rect_raw" />
     </node>
+    <node pkg="loop_fusion" name="drone_$(arg drone_id)_loop_fusion" type="loop_fusion_node" args="$(find vins)/../config/realsense_d435i/realsense_stereo_imu_config.yaml" output="screen">
+        <remap from="/vins_estimator/odometry" to="/drone_$(arg drone_id)_vins_estimator/odometry" />
+        <remap from="vins/cam1" to="/drone_$(arg drone_id)_camera/infra1/image_rect_raw" />
+        <remap from="/vins_estimator/keyframe_pose" to="/drone_$(arg drone_id)_vins_estimator/keyframe_pose" />
+        <remap from="/vins_estimator/extrinsic" to="/drone_$(arg drone_id)_vins_estimator/extrinsic" />
+        <remap from="/vins_estimator/keyframe_point" to="/drone_$(arg drone_id)_vins_estimator/keyframe_point" />
+        <remap from="/vins_estimator/margin_cloud" to="/drone_$(arg drone_id)_vins_estimator/margin_cloud" />
+    </node>
 </launch>
