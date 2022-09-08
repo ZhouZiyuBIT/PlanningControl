@@ -24,14 +24,14 @@ class QuadrotorMPC(object):
         self._u_dim = 4
 
         # cost matrix for tracking the path point position
-        self._Q_track_pos = np.diag([10, 10, 10])
+        self._Q_track_pos = np.diag([100, 100, 100])
         # cost matrix for tracking the path point velocity
         self._Q_track_vel = np.diag([10, 10, 10])
         # cost matrix for tracking the path point yaw
         self._Q_track_yaw = np.diag([20, 20])
 
         # cost matrix for the control input
-        self._Q_u = np.diag([0.2, 0.3, 0.3, 0.3])
+        self._Q_u = np.diag([0.2, 0.6, 0.6, 0.6])
 
         self._quad_x0 = [0, 0, 0, 0, 0, 0, 1, 0, 0, 0]
         self._quad_u0 = [-G, 0, 0, 0]
@@ -227,6 +227,6 @@ class QuadrotorMPC(object):
 
 
 if __name__ == "__main__":
-    mpc = QuadrotorMPC(1,0.1)
+    mpc = QuadrotorMPC(0.5, 0.1)
     mpc.define_solver_python()
-    mpc.generate_solver_c("mpc_T1_dt01.c")
+    mpc.generate_solver_c("mpc_T05_dt01.c")

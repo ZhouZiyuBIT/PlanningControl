@@ -78,7 +78,7 @@ void cmdCallback(const ros::TimerEvent &e)
   ros::Time time_now = ros::Time::now();
   double t_cur = (time_now - start_time_).toSec();
 
-  Eigen::Vector3d pos, vel;
+  Eigen::Vector3d pos, end, vel;
   double yaw=0;
   static double yaw_last = 0, yaw_drift=0;
   
@@ -91,10 +91,14 @@ void cmdCallback(const ros::TimerEvent &e)
     if (t_f < traj_duration_ && t_f >= 0.0)
     {
       pos = traj_[0].evaluateDeBoorT(t_f);
-      
-      vel = traj_[1].evaluateDeBoorT(t_f);
+      if(t_f < traj_duration_-1.0)
+      {
+        end = traj_[0].evaluateDeBoorT(traj_duration_-0.9);
+      // vel = traj_[1].evaluateDeBoorT(t_f);
+      // vel[2] = 0;
+      vel = end-pos;
       vel[2] = 0;
-      if(vel.norm() > 0.05)
+      if(vel.norm() > 0.1)
       {
         double yaw_tem = atan2(vel[1], vel[0]);
         if(yaw_tem+yaw_drift-yaw_last > 3.2)
@@ -107,6 +111,11 @@ void cmdCallback(const ros::TimerEvent &e)
         }
         yaw = yaw_tem + yaw_drift;
         yaw_last = yaw;
+      }
+      else
+      {
+        yaw = 1000;
+      }
       }
       else
       {

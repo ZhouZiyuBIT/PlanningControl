@@ -39,11 +39,11 @@
     <arg name="fy" value="387.229248046875"/>
 
     <!-- maximum velocity and acceleration the drone will reach -->
-    <arg name="max_vel" value="2.0" />
-    <arg name="max_acc" value="3.0" />
+    <arg name="max_vel" value="2.5" />
+    <arg name="max_acc" value="1.0" />
 
     <!--always set to 1.5 times grater than sensing horizen-->
-    <arg name="planning_horizon" value="7.5" /> 
+    <arg name="planning_horizon" value="4.5" /> 
 
     <arg name="use_distinctive_trajs" value="false" />
 
@@ -55,13 +55,13 @@
     <!-- It generates a piecewise min-snap traj passing all waypoints -->
     <arg name="point_num" value="1" />
 
-    <arg name="point0_x" value="0.0" />
+    <arg name="point0_x" value="11.0" />
     <arg name="point0_y" value="0.0" />
     <arg name="point0_z" value="1.0" />
 
-    <arg name="point1_x" value="1.0" />
+    <arg name="point1_x" value="4.0" />
     <arg name="point1_y" value="0.0"/>
-    <arg name="point1_z" value="1.0" />
+    <arg name="point1_z" value="0.8" />
 
     <arg name="point2_x" value="15.0" />
     <arg name="point2_y" value="0.0" />
@@ -84,14 +84,14 @@
       <param name="traj_server/time_forward" value="1.0" type="double"/>
   </node>
 
-  <node pkg="px4_ctrl" name="px4_mpc" type="px4_mpc_node" args="$(find px4_ctrl)/src/mpc_T1_dt01.so" output="screen">
+  <node pkg="px4_ctrl" name="px4_mpc" type="px4_mpc_node" args="$(find px4_ctrl)/src/mpc_T05_dt01.so" output="screen">
     <remap from="/planning/track_traj" to="drone_$(arg drone_id)_planning/track_traj"/>
     <remap from="/px4/control_u" to="drone_$(arg drone_id)_px4/control_u"/>
     <remap from="/px4/state" to="drone_$(arg drone_id)_px4/state"/>
   </node>
 
   <!-- visualization -->
-  <node pkg="odom_visualization" name="drone_$(arg drone_id)_odom_visualization" type="odom_visualization" output="screen">
+  <!-- <node pkg="odom_visualization" name="drone_$(arg drone_id)_odom_visualization" type="odom_visualization" output="screen">
         <remap from="~odom" to="drone_$(arg drone_id)_$(arg odom_topic)"/>
         <param name="color/a" value="1.0"/>    
         <param name="color/r" value="0.0"/>        
@@ -102,6 +102,6 @@
         <param name="tf45" value="false"/>
         <param name="drone_id" value="drone_id"/>
   </node>
-  <include file="$(find ego_planner)/launch/rviz.launch"/>
+  <include file="$(find ego_planner)/launch/rviz.launch"/> -->
 
 </launch>

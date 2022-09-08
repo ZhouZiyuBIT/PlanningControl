@@ -17,6 +17,8 @@ px4_ctrl::track_traj _track_traj_msg;
 ros::Subscriber _state_sub;
 nav_msgs::Odometry _state_msg;
 
+int step_num = 5;
+
 bool track_traj_received = false;
 void rcv_track_traj_cb(const px4_ctrl::track_traj &msg)
 {
@@ -29,14 +31,14 @@ void rcv_state_cb(nav_msgs::Odometry msg)
     float q_state[10] = {msg.pose.pose.position.x, -msg.pose.pose.position.y, -msg.pose.pose.position.z,
                          msg.twist.twist.linear.x, -msg.twist.twist.linear.y, -msg.twist.twist.linear.z,
                          msg.pose.pose.orientation.w, msg.pose.pose.orientation.x, -msg.pose.pose.orientation.y, -msg.pose.pose.orientation.z,};
-    std::vector<double> ref_path(10+(7+3)*10, 0);
+    std::vector<double> ref_path(10+(7+3)*step_num, 0);
     if(track_traj_received)
     {
         ref_path[0] = q_state[0];ref_path[1] = q_state[1];ref_path[2] = q_state[2];
         ref_path[3] = q_state[3];ref_path[4] = q_state[4];ref_path[5] = q_state[5];
         ref_path[6] = q_state[6];ref_path[7] = q_state[7];ref_path[8] = q_state[8];ref_path[9] = q_state[9];
 
-        for(int i=0; i<10; i++)
+        for(int i=0; i<step_num; i++)
         {
             ref_path[10*(i+1)+0] = _track_traj_msg.pos_pts[i].x;
             ref_path[10*(i+1)+1] = -_track_traj_msg.pos_pts[i].y;
@@ -98,7 +100,7 @@ void mpc_init()
     nlp_ubx.insert(nlp_ubx.end(), x_max.begin(), x_max.end());
     nlp_lbg.insert(nlp_lbg.end(), g_min.begin(), g_min.end());
     nlp_ubg.insert(nlp_ubg.end(), g_max.begin(), g_max.end());
-    for(int i=0; i<10; i++)
+    for(int i=0; i<step_num; i++)
     {
         nlp_x0.insert(nlp_x0.end(), quad_u0.begin(), quad_u0.end());
         nlp_x0.insert(nlp_x0.end(), quad_x0.begin(), quad_x0.end());
