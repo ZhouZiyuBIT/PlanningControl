@@ -60,8 +60,8 @@
 
     <!-- planning fsm -->
     <param name="fsm/flight_type" value="$(arg flight_type)" type="int"/>
-    <param name="fsm/thresh_replan_time" value="0.5" type="double"/>
-    <param name="fsm/thresh_no_replan_meter" value="1.0" type="double"/>
+    <param name="fsm/thresh_replan_time" value="1" type="double"/>
+    <param name="fsm/thresh_no_replan_meter" value="1" type="double"/>
     <param name="fsm/planning_horizon" value="$(arg planning_horizon)" type="double"/> <!--always set to 1.5 times grater than sensing horizen-->
     <param name="fsm/planning_horizen_time" value="3" type="double"/>
     <param name="fsm/emergency_time" value="1.0" type="double"/>
@@ -92,7 +92,7 @@
     <param name="grid_map/local_update_range_x"  value="5.0" /> 
     <param name="grid_map/local_update_range_y"  value="5.0" /> 
     <param name="grid_map/local_update_range_z"  value="4.0" /> 
-    <param name="grid_map/obstacles_inflation"     value="0.299" /> 
+    <param name="grid_map/obstacles_inflation"     value="0.199" /> 
     <param name="grid_map/local_map_margin" value="10"/>
     <param name="grid_map/ground_height"        value="-0.01"/>
     <!-- camera parameter -->
